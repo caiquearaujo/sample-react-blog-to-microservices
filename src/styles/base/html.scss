@@ -97,6 +97,12 @@ main {
 	margin: 72px auto;
 }
 
+input,
+textarea,
+select {
+	font-family: $font-family;
+}
+
 @media screen and (max-width: 780px) {
 	html {
 		font-size: 9px;
