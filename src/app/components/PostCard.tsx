@@ -1,5 +1,6 @@
 import PostObject from '@/types';
 import React from 'react';
+import CommentCreate from './CommentCreate';
 
 import './PostCard.scss';
 
@@ -14,15 +15,18 @@ export default function PostCard(props: PostCardProps) {
 
 	return (
 		<div className="post card" {...rest}>
-			<div data-testid="status" className={`status is-${status}`}>
-				{status.toUpperCase()}
+			<div className="wrapper">
+				<div data-testid="status" className={`status is-${status}`}>
+					{status.toUpperCase()}
+				</div>
+				<h3 data-testid="title" className="title">
+					{title}
+				</h3>
+				<p data-testid="content" className="content">
+					{content}
+				</p>
 			</div>
-			<h3 data-testid="title" className="title">
-				{title}
-			</h3>
-			<p data-testid="content" className="content">
-				{content}
-			</p>
+			{status !== 'draft' && <CommentCreate postId={props.id} />}
 		</div>
 	);
 }
