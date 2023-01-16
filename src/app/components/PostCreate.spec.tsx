@@ -8,7 +8,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import PostCreate from './PostCreate';
 
-describe('<PostCreate/>', () => {
+describe('PostCreate', () => {
 	it('should display component', () => {
 		render(<PostCreate />);
 		expect(screen.getByTestId('post-create-comp')).toBeInTheDocument();

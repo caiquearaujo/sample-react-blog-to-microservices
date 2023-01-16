@@ -1,0 +1,39 @@
+.post.card {
+	flex: 1 1 0;
+	margin: 24px auto;
+	padding: 18px;
+	border: 1px solid #e1e4e8;
+	border-radius: 6px;
+
+	.title {
+		font-size: 2.4rem;
+		font-weight: 600;
+		line-height: 2.8rem;
+		margin-bottom: 18px;
+	}
+
+	.content {
+		font-size: 1.4rem;
+		line-height: 1.8rem;
+		margin-bottom: 18px;
+	}
+
+	.status {
+		font-size: 1rem;
+		font-weight: 600;
+		line-height: 1rem;
+		display: inline-block;
+		padding: 6px;
+		margin-bottom: 12px;
+
+		&.is-draft {
+			background-color: #f1f8ff;
+			color: #0366d6;
+		}
+
+		&.is-published {
+			background-color: #f0fff4;
+			color: #22863a;
+		}
+	}
+}
