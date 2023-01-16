@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './PostCreate.scss';
-
 export default function PostCreate() {
 	const [alert, setAlert] = React.useState({
 		type: 'message',
@@ -55,7 +53,7 @@ export default function PostCreate() {
 
 	return (
 		<div className="post creator" data-testid="post-create-comp">
-			<h2 className="title">Create a new Post</h2>
+			<h2 className="title-sm">Create a new Post</h2>
 			<form onSubmit={onSubmit}>
 				<div className="form-group">
 					<label htmlFor="title">Title</label>
@@ -96,14 +94,14 @@ export default function PostCreate() {
 				{alert.message && (
 					<div
 						data-testid="alert-message"
-						className={`alert-${alert.type}`}>
+						className={`alert ${alert.type} huge`}>
 						{alert.message}
 					</div>
 				)}
 				<button
 					data-testid="submit-button"
 					type="submit"
-					className="btn btn-primary">
+					className="primary">
 					Submit
 				</button>
 			</form>

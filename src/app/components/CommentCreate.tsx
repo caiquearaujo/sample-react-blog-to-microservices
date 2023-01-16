@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './CommentCreate.scss';
-
 export type CommentCreateProps = React.DetailedHTMLProps<
 	React.HTMLAttributes<HTMLDivElement>,
 	HTMLDivElement
@@ -55,9 +53,9 @@ export default function CommentCreate(props: CommentCreateProps) {
 
 	return (
 		<div className="comment creator" data-testid="comment-create-comp">
-			<h2 className="title">Comment on Post</h2>
+			<h2 className="title-sm">Comment on Post</h2>
 			<form onSubmit={onSubmit}>
-				<div className="form-group">
+				<div className="form-group-sm">
 					<label htmlFor="author">Your Name</label>
 					<input
 						data-testid="author-input"
@@ -68,7 +66,7 @@ export default function CommentCreate(props: CommentCreateProps) {
 						id="author"
 					/>
 				</div>
-				<div className="form-group">
+				<div className="form-group-sm">
 					<label htmlFor="content">Message</label>
 					<textarea
 						data-testid="content-input"
@@ -81,14 +79,14 @@ export default function CommentCreate(props: CommentCreateProps) {
 				{alert.message && (
 					<div
 						data-testid="alert-message"
-						className={`alert-${alert.type}`}>
+						className={`alert ${alert.type}`}>
 						{alert.message}
 					</div>
 				)}
 				<button
 					data-testid="submit-button"
 					type="submit"
-					className="btn btn-primary">
+					className="primary small">
 					Submit
 				</button>
 			</form>

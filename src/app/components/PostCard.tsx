@@ -2,8 +2,6 @@ import PostObject from '@/types';
 import React from 'react';
 import CommentCreate from './CommentCreate';
 
-import './PostCard.scss';
-
 export type PostCardProps = React.DetailedHTMLProps<
 	React.HTMLAttributes<HTMLDivElement>,
 	HTMLDivElement
@@ -19,7 +17,7 @@ export default function PostCard(props: PostCardProps) {
 				<div data-testid="status" className={`status is-${status}`}>
 					{status.toUpperCase()}
 				</div>
-				<h3 data-testid="title" className="title">
+				<h3 data-testid="title" className="title-md">
 					{title}
 				</h3>
 				<p data-testid="content" className="content">

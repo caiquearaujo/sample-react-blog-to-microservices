@@ -2,8 +2,6 @@ import PostObject from '@/types';
 import React from 'react';
 import PostCard from './PostCard';
 
-import './PostList.scss';
-
 export type PostListProps = React.DetailedHTMLProps<
 	React.HTMLAttributes<HTMLDivElement>,
 	HTMLDivElement
@@ -14,8 +12,8 @@ export default function PostList(props: PostListProps) {
 
 	return (
 		<div className="post list" {...rest}>
-			<h2 className="title">Recent Posts</h2>
-			<div className="container">
+			<h2 className="title-xl">Recent Posts</h2>
+			<div className="container-flex-row">
 				{posts.map(post => (
 					<PostCard data-testid="post-card" key={post.id} {...post} />
 				))}

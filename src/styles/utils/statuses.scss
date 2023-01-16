@@ -1,0 +1,29 @@
+.status {
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1rem;
+	display: inline-block;
+	padding: 6px;
+	margin-bottom: 12px;
+
+	&.is-draft {
+		background-color: #f1f8ff;
+		color: #0366d6;
+	}
+
+	&.is-published,
+	&.is-approved {
+		background-color: #f0fff4;
+		color: #22863a;
+	}
+
+	&.is-pending {
+		background-color: #fff5f5;
+		color: #cb8024;
+	}
+
+	&.is-refused {
+		background-color: #fff5f5;
+		color: #cb2431;
+	}
+}

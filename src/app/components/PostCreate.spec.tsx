@@ -54,7 +54,7 @@ describe('PostCreate', () => {
 
 		const alertMessage = screen.getByTestId('alert-message');
 		expect(alertMessage).toBeInTheDocument();
-		expect(alertMessage).toHaveClass('alert-danger');
+		expect(alertMessage).toHaveClass('alert danger');
 		expect(alertMessage).toHaveTextContent(
 			'Title is required, you must to set it before submit.'
 		);
@@ -71,7 +71,7 @@ describe('PostCreate', () => {
 
 		const alertMessage = screen.getByTestId('alert-message');
 		expect(alertMessage).toBeInTheDocument();
-		expect(alertMessage).toHaveClass('alert-danger');
+		expect(alertMessage).toHaveClass('alert danger');
 		expect(alertMessage).toHaveTextContent(
 			'Content is required, you must to set it before submit.'
 		);
@@ -92,7 +92,7 @@ describe('PostCreate', () => {
 
 		const alertMessage = screen.getByTestId('alert-message');
 		expect(alertMessage).toBeInTheDocument();
-		expect(alertMessage).toHaveClass('alert-message');
+		expect(alertMessage).toHaveClass('alert message');
 		expect(alertMessage).toHaveTextContent('Post created successfully.');
 
 		await waitForElementToBeRemoved(
