@@ -1,0 +1,17 @@
+.comment.card {
+	margin: 6px 0;
+	padding: 12px;
+	border: 1px solid #e1e4e8;
+	border-radius: 6px;
+
+	.content {
+		font-size: 1.4rem;
+		line-height: 1.8rem;
+		margin-bottom: 0;
+	}
+
+	.author {
+		font-size: 1.2rem;
+		font-weight: 600;
+	}
+}

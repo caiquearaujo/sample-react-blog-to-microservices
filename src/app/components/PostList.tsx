@@ -1,4 +1,4 @@
-import PostObject from '@/types';
+import { PostObject } from '@/types';
 import React from 'react';
 import PostCard from './PostCard';
 

@@ -1,5 +1,6 @@
-import PostObject from '@/types';
+import { PostObject } from '@/types';
 import React from 'react';
+import CommentCard from './CommentCard';
 import CommentCreate from './CommentCreate';
 
 export type PostCardProps = React.DetailedHTMLProps<
@@ -9,7 +10,7 @@ export type PostCardProps = React.DetailedHTMLProps<
 	PostObject;
 
 export default function PostCard(props: PostCardProps) {
-	const { title, content, status, ...rest } = props;
+	const { id, title, content, status, ...rest } = props;
 
 	return (
 		<div className="post card" {...rest}>
