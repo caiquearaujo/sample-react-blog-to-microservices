@@ -1,5 +1,6 @@
 {
 	"editor.fontSize": 16,
+	"stylelint.autoFixOnSave": true,
 	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnPaste": true,
@@ -20,4 +21,18 @@
 		"editor.formatOnPaste": true,
 		"editor.formatOnSave": true,
 	},
+	"[css]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.stylelint": true
+		}
+	},
+	"[scss]": {
+		"editor.codeActionsOnSave": {
+			"source.fixAll.stylelint": true
+		}
+	},
+	"css.validate": false,
+	"less.validate": false,
+	"scss.validate": false,
+	"stylelint.validate": ["css", "scss"]
 }

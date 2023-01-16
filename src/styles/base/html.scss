@@ -1,0 +1,104 @@
+$base-font-size: 10px;
+$base-letter-spacing: -0.02em;
+
+html {
+	font-size: $base-font-size;
+	height: 100%;
+	min-height: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	width: 100%;
+}
+
+body {
+	font-size: $base-font-size;
+	font-family: $font-family;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	min-height: 100%;
+	min-width: 100%;
+	max-width: 100%;
+	width: 100%;
+	font-weight: normal;
+	letter-spacing: $base-letter-spacing;
+	background: $white;
+	color: $black;
+	position: relative;
+	overflow-x: hidden;
+	display: table;
+}
+
+/** Scroll bar **/
+html::-webkit-scrollbar-button,
+html::-webkit-scrollbar-track-piece,
+html::-webkit-scrollbar-corner {
+	display: none;
+}
+
+html::-webkit-scrollbar,
+html::-webkit-scrollbar-track {
+	width: 4px;
+	height: 4px;
+}
+
+html::-webkit-scrollbar-thumb {
+	background-color: $white;
+}
+
+h1 {
+	font-size: 4.2rem;
+	font-weight: 600;
+	line-height: 4.8rem;
+}
+
+h2 {
+	font-size: 3.6rem;
+	font-weight: 600;
+	line-height: 4.2rem;
+}
+
+h3 {
+	font-size: 3rem;
+	font-weight: 600;
+	line-height: 3.6rem;
+}
+
+h4 {
+	font-size: 2.4rem;
+	font-weight: 600;
+	line-height: 3rem;
+}
+
+h5 {
+	font-size: 1.8rem;
+	font-weight: 600;
+	line-height: 2.4rem;
+}
+
+h6 {
+	font-size: 1.6rem;
+	font-weight: 600;
+	line-height: 1.8rem;
+}
+
+p {
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 2.4rem;
+}
+
+main {
+	padding: 24px;
+	width: 100%;
+	max-width: 1280px;
+	margin: 72px auto;
+}
+
+@media screen and (max-width: 780px) {
+	html {
+		font-size: 9px;
+	}
+}
