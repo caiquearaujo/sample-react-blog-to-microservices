@@ -8,9 +8,9 @@ describe('PostCard', () => {
 			<PostCard id="abc" title="foo" content="bar" status="draft" />
 		);
 
-		const title = screen.getByTestId('title');
-		const content = screen.getByTestId('content');
-		const status = screen.getByTestId('status');
+		const title = screen.getByTestId('post-title');
+		const content = screen.getByTestId('post-content');
+		const status = screen.getByTestId('post-status');
 
 		expect(title).toBeInTheDocument();
 		expect(title).toHaveTextContent('foo');
