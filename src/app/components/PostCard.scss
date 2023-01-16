@@ -1,12 +1,12 @@
 .post.card {
-	flex: 1 1 0;
-	margin: 24px auto;
+	flex: 1 0 calc(100% / 3);
+	margin: 6px;
 	padding: 18px;
 	border: 1px solid #e1e4e8;
 	border-radius: 6px;
 
 	.title {
-		font-size: 2.4rem;
+		font-size: 2.2rem;
 		font-weight: 600;
 		line-height: 2.8rem;
 		margin-bottom: 18px;

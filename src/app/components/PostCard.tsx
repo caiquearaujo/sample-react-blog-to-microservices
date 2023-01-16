@@ -1,3 +1,4 @@
+import PostObject from '@/types';
 import React from 'react';
 
 import './PostCard.scss';
@@ -5,11 +6,8 @@ import './PostCard.scss';
 export type PostCardProps = React.DetailedHTMLProps<
 	React.HTMLAttributes<HTMLDivElement>,
 	HTMLDivElement
-> & {
-	title: string;
-	content: string;
-	status: string;
-};
+> &
+	PostObject;
 
 export default function PostCard(props: PostCardProps) {
 	const { title, content, status, ...rest } = props;

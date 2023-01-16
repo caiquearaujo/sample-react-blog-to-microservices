@@ -1,0 +1,14 @@
+.post.list {
+	& > .title {
+		font-size: 3.2rem;
+		font-weight: 600;
+		line-height: 3.4rem;
+		margin-bottom: 18px;
+	}
+
+	.container {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+	}
+}

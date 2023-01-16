@@ -4,7 +4,9 @@ import PostCard from './PostCard';
 
 describe('PostCard', () => {
 	it('should render', () => {
-		render(<PostCard title="foo" content="bar" status="draft" />);
+		render(
+			<PostCard id="abc" title="foo" content="bar" status="draft" />
+		);
 
 		const title = screen.getByTestId('title');
 		const content = screen.getByTestId('content');
