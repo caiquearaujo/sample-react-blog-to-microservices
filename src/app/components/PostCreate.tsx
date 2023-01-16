@@ -18,7 +18,6 @@ export default function PostCreate() {
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log({ title, content, status });
 
 		if (title.length === 0) {
 			setAlert({
@@ -43,7 +42,7 @@ export default function PostCreate() {
 		setStatus('draft');
 		setAlert({
 			type: 'message',
-			message: 'Post created successfully',
+			message: 'Post created successfully.',
 		});
 
 		setTimeout(() => {
@@ -55,12 +54,13 @@ export default function PostCreate() {
 	};
 
 	return (
-		<div className="post creator">
+		<div className="post creator" data-testid="post-create-comp">
 			<h2 className="title">Create a new Post</h2>
 			<form onSubmit={onSubmit}>
 				<div className="form-group">
 					<label htmlFor="title">Title</label>
 					<input
+						data-testid="title-input"
 						value={title}
 						onChange={e => setTitle(e.target.value)}
 						type="text"
@@ -71,6 +71,7 @@ export default function PostCreate() {
 				<div className="form-group">
 					<label htmlFor="title">Content</label>
 					<textarea
+						data-testid="content-input"
 						value={content}
 						onChange={e => setContent(e.target.value)}
 						className="form-control"
@@ -80,6 +81,7 @@ export default function PostCreate() {
 				<div className="form-group">
 					<label htmlFor="title">Status</label>
 					<select
+						data-testid="status-input"
 						value={status}
 						onChange={e => setStatus(e.target.value)}
 						className="form-control"
@@ -92,9 +94,16 @@ export default function PostCreate() {
 					</select>
 				</div>
 				{alert.message && (
-					<div className={`alert-${alert.type}`}>{alert.message}</div>
+					<div
+						data-testid="alert-message"
+						className={`alert-${alert.type}`}>
+						{alert.message}
+					</div>
 				)}
-				<button type="submit" className="btn btn-primary">
+				<button
+					data-testid="submit-button"
+					type="submit"
+					className="btn btn-primary">
 					Submit
 				</button>
 			</form>
