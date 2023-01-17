@@ -1,4 +1,7 @@
 module.exports = {
+	rootDir: '.',
+	roots: ['<rootDir>/src', '<rootDir>/test'],
+	testMatch: ['**/test/*spec.+(ts|tsx)', '**/test/**/*spec.+(ts|tsx)'],
 	collectCoverage: true,
 	collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
 	coverageThreshold: {
@@ -9,9 +12,28 @@ module.exports = {
 			statements: 80,
 		},
 	},
-	coveragePathIgnorePatterns: ['./node_modules/', './test/'],
+	coveragePathIgnorePatterns: [
+		'./node_modules/',
+		'./test/',
+		'./debug',
+		'./build',
+	],
 	coverageReporters: ['json-summary', 'text', 'lcov'],
+	transform: {
+		'^.+\\.tsx?$': [
+			'ts-jest',
+			{
+				diagnostics: false,
+				tsconfig: 'tsconfig.json',
+			},
+		],
+	},
+	preset: 'ts-jest',
+	transformIgnorePatterns: ['<rootDir>/node_modules/'],
+	testEnvironment: 'node',
 	moduleNameMapper: {
 		'@(.*)$': '<rootDir>/src/$1',
 	},
+	moduleDirectories: ['node_modules', '<rootDir>/src'],
+	extensionsToTreatAsEsm: ['.ts', '.tsx'],
 };
