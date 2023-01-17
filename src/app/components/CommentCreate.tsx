@@ -1,12 +1,13 @@
 import React from 'react';
+import { createComment } from '@/app/api/index';
 
 export type CommentCreateProps = React.DetailedHTMLProps<
 	React.HTMLAttributes<HTMLDivElement>,
 	HTMLDivElement
-> & { postId: string };
+> & { post: string };
 
 export default function CommentCreate(props: CommentCreateProps) {
-	const { postId } = props;
+	const { post } = props;
 
 	const [alert, setAlert] = React.useState({
 		type: 'message',
@@ -15,7 +16,7 @@ export default function CommentCreate(props: CommentCreateProps) {
 	const [content, setContent] = React.useState('');
 	const [author, setAuthor] = React.useState('');
 
-	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (author.length === 0) {
@@ -36,12 +37,25 @@ export default function CommentCreate(props: CommentCreateProps) {
 			return;
 		}
 
+		const created = await createComment(post, {
+			author,
+			content,
+		});
+
+		if (!created) {
+			setAlert({
+				type: 'danger',
+				message: 'Error creating comment, please try again.',
+			});
+		} else {
+			setAlert({
+				type: 'message',
+				message: 'Comment created successfully.',
+			});
+		}
+
 		setAuthor('');
 		setContent('');
-		setAlert({
-			type: 'message',
-			message: 'Comment created successfully.',
-		});
 
 		setTimeout(() => {
 			setAlert({

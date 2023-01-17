@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPost } from '@/app/api/index';
 
 export default function PostCreate() {
 	const [alert, setAlert] = React.useState({
@@ -14,7 +15,7 @@ export default function PostCreate() {
 		{ key: 'published', label: 'Published' },
 	];
 
-	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (title.length === 0) {
@@ -35,13 +36,27 @@ export default function PostCreate() {
 			return;
 		}
 
+		const created = await createPost({
+			title,
+			content,
+			status,
+		});
+
+		if (!created) {
+			setAlert({
+				type: 'danger',
+				message: 'Error creating post, please try again.',
+			});
+		} else {
+			setAlert({
+				type: 'message',
+				message: 'Post created successfully.',
+			});
+		}
+
 		setTitle('');
 		setContent('');
 		setStatus('draft');
-		setAlert({
-			type: 'message',
-			message: 'Post created successfully.',
-		});
 
 		setTimeout(() => {
 			setAlert({

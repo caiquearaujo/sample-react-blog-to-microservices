@@ -1,23 +1,28 @@
-import { PostObject } from '@/types';
 import React from 'react';
+import { PostObject } from '@/types';
+import { getAllPosts } from '@/app/api/index';
 import PostCard from './PostCard';
 
-export type PostListProps = React.DetailedHTMLProps<
-	React.HTMLAttributes<HTMLDivElement>,
-	HTMLDivElement
-> & { posts: Array<PostObject> };
+export default function PostList() {
+	const [posts, setPosts] = React.useState<PostObject[]>([]);
 
-export default function PostList(props: PostListProps) {
-	const { posts, ...rest } = props;
+	const fetchPosts = async () => {
+		const response = await getAllPosts();
+		setPosts(response);
+	};
+
+	React.useEffect(() => {
+		fetchPosts();
+	}, []);
+
+	const renderedPosts = posts.map(post => (
+		<PostCard data-testid="post-card" key={post.id} {...post} />
+	));
 
 	return (
-		<div className="post list" {...rest}>
+		<div className="post list">
 			<h2 className="title-xl">Recent Posts</h2>
-			<div className="container-flex-row">
-				{posts.map(post => (
-					<PostCard data-testid="post-card" key={post.id} {...post} />
-				))}
-			</div>
+			<div className="container-flex-row">{renderedPosts}</div>
 		</div>
 	);
 }

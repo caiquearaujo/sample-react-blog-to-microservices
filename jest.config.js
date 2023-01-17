@@ -1,7 +1,7 @@
 module.exports = {
 	rootDir: '.',
-	roots: ['<rootDir>/src', '<rootDir>/test'],
-	testMatch: ['**/test/*spec.+(ts|tsx)', '**/test/**/*spec.+(ts|tsx)'],
+	roots: ['<rootDir>/src'],
+	testMatch: ['**/src/*spec.+(ts|tsx)'],
 	collectCoverage: true,
 	collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
 	coverageThreshold: {
@@ -30,9 +30,9 @@ module.exports = {
 	},
 	preset: 'ts-jest',
 	transformIgnorePatterns: ['<rootDir>/node_modules/'],
-	testEnvironment: 'node',
+	testEnvironment: 'jsdom',
 	moduleNameMapper: {
-		'@(.*)$': '<rootDir>/src/$1',
+		'@/(.*)': '<rootDir>/src/$1',
 	},
 	moduleDirectories: ['node_modules', '<rootDir>/src'],
 	extensionsToTreatAsEsm: ['.ts', '.tsx'],

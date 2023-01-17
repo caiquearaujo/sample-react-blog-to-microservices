@@ -9,7 +9,6 @@ import {
 } from '.';
 
 jest.mock('axios');
-
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('Api Endpoints', () => {
@@ -112,8 +111,7 @@ describe('Api Endpoints', () => {
 			data: { id: '1' },
 		});
 
-		const result = await createComment({
-			postId: '1',
+		const result = await createComment('1', {
 			author: 'Author 1',
 			content: 'This is the content for comment 1',
 		});
@@ -136,8 +134,7 @@ describe('Api Endpoints', () => {
 			data: { status: 421, message: 'Unprocessable Entity' },
 		});
 
-		const result = await createComment({
-			postId: '1',
+		const result = await createComment('1', {
 			author: 'Author 1',
 			content: 'This is the content for comment 1',
 		});

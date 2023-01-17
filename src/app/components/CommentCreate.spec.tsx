@@ -1,23 +1,29 @@
 import React from 'react';
+import axios from 'axios';
 import {
+	act,
 	fireEvent,
 	render,
 	screen,
+	waitFor,
 	waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CommentCreate from './CommentCreate';
 
+jest.mock('axios');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+
 describe('CommentCreate', () => {
 	it('should display component', () => {
-		render(<CommentCreate postId="1" />);
+		render(<CommentCreate post="1" />);
 		expect(
 			screen.getByTestId('comment-create-comp')
 		).toBeInTheDocument();
 	});
 
 	it('should display/change the author input value', () => {
-		render(<CommentCreate postId="1" />);
+		render(<CommentCreate post="1" />);
 		const titleInput = screen.getByTestId('author-input');
 		expect(titleInput).toBeInTheDocument();
 		expect(titleInput).toHaveValue('');
@@ -28,7 +34,7 @@ describe('CommentCreate', () => {
 	});
 
 	it('should display/change the content input value', () => {
-		render(<CommentCreate postId="1" />);
+		render(<CommentCreate post="1" />);
 		const contentInput = screen.getByTestId('content-input');
 		expect(contentInput).toBeInTheDocument();
 		expect(contentInput).toHaveValue('');
@@ -39,7 +45,7 @@ describe('CommentCreate', () => {
 	});
 
 	it('should display the alert danger message when empty author', () => {
-		render(<CommentCreate postId="1" />);
+		render(<CommentCreate post="1" />);
 		const submitButton = screen.getByTestId('submit-button');
 		userEvent.click(submitButton);
 
@@ -52,7 +58,7 @@ describe('CommentCreate', () => {
 	});
 
 	it('should display the alert danger message when empty content', () => {
-		render(<CommentCreate postId="1" />);
+		render(<CommentCreate post="1" />);
 		fireEvent.change(screen.getByTestId('author-input'), {
 			target: { value: 'Bruce Wayne' },
 		});
@@ -68,8 +74,12 @@ describe('CommentCreate', () => {
 		);
 	});
 
-	it('should display/hide the alert info message when submitted', async () => {
-		render(<CommentCreate postId="1" />);
+	it('should submit', async () => {
+		mockedAxios.post.mockResolvedValue({
+			data: { id: '1' },
+		});
+
+		render(<CommentCreate post="1" />);
 		fireEvent.change(screen.getByTestId('author-input'), {
 			target: { value: 'Bruce Wayne' },
 		});
@@ -79,9 +89,13 @@ describe('CommentCreate', () => {
 		});
 
 		const submitButton = screen.getByTestId('submit-button');
-		userEvent.click(submitButton);
+		act(() => userEvent.click(submitButton));
+		expect(mockedAxios.post).toHaveBeenCalledTimes(1);
 
-		const alertMessage = screen.getByTestId('alert-message');
+		const alertMessage = await waitFor(() =>
+			screen.getByTestId('alert-message')
+		);
+
 		expect(alertMessage).toBeInTheDocument();
 		expect(alertMessage).toHaveClass('alert message');
 		expect(alertMessage).toHaveTextContent(

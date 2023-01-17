@@ -5,7 +5,13 @@ import PostCard from './PostCard';
 describe('PostCard', () => {
 	it('should render', () => {
 		render(
-			<PostCard id="abc" title="foo" content="bar" status="draft" />
+			<PostCard
+				id="abc"
+				title="foo"
+				content="bar"
+				status="draft"
+				comments={[]}
+			/>
 		);
 
 		const title = screen.getByTestId('post-title');

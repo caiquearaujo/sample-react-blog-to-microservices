@@ -7,7 +7,6 @@ describe('CommentCard', () => {
 		render(
 			<CommentCard
 				id="abc"
-				postId="1"
 				author="foo"
 				content="bar"
 				status="approved"
@@ -31,7 +30,6 @@ describe('CommentCard', () => {
 		render(
 			<CommentCard
 				id="abc"
-				postId="1"
 				author="foo"
 				content="bar"
 				status="pending"
@@ -50,7 +48,6 @@ describe('CommentCard', () => {
 		render(
 			<CommentCard
 				id="abc"
-				postId="1"
 				author="foo"
 				content="bar"
 				status="refused"

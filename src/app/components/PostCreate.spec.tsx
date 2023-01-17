@@ -1,12 +1,18 @@
 import React from 'react';
+import axios from 'axios';
 import {
+	act,
 	fireEvent,
 	render,
 	screen,
+	waitFor,
 	waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import PostCreate from './PostCreate';
+
+jest.mock('axios');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('PostCreate', () => {
 	it('should display component', () => {
@@ -77,7 +83,11 @@ describe('PostCreate', () => {
 		);
 	});
 
-	it('should display/hide the alert info message when submitted', async () => {
+	it('should submit', async () => {
+		mockedAxios.post.mockResolvedValue({
+			data: { id: '1' },
+		});
+
 		render(<PostCreate />);
 		fireEvent.change(screen.getByTestId('title-input'), {
 			target: { value: 'My title' },
@@ -88,9 +98,13 @@ describe('PostCreate', () => {
 		});
 
 		const submitButton = screen.getByTestId('submit-button');
-		userEvent.click(submitButton);
+		act(() => userEvent.click(submitButton));
+		expect(mockedAxios.post).toHaveBeenCalledTimes(1);
 
-		const alertMessage = screen.getByTestId('alert-message');
+		const alertMessage = await waitFor(() =>
+			screen.getByTestId('alert-message')
+		);
+
 		expect(alertMessage).toBeInTheDocument();
 		expect(alertMessage).toHaveClass('alert message');
 		expect(alertMessage).toHaveTextContent('Post created successfully.');

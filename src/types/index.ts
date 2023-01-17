@@ -3,11 +3,11 @@ export interface PostObject {
 	title: string;
 	content: string;
 	status: string;
+	comments: CommentObject[];
 }
 
 export interface CommentObject {
 	id: string;
-	postId: string;
 	author: string;
 	content: string;
 	status: string;

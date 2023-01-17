@@ -31,12 +31,13 @@ const createPost = async (
 };
 
 const createComment = async (
+	postId: string,
 	comment: Omit<CommentObject, 'id' | 'status'>
 ): Promise<boolean> => {
 	try {
 		const { data } = await axios.post(
-			`${COMMENT_API_URL}/posts/${comment.postId}/comments`,
-			comment
+			`${COMMENT_API_URL}/posts/${postId}/comments`,
+			{ postId, ...comment }
 		);
 		return data.id !== undefined;
 	} catch (err) {

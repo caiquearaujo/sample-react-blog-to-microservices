@@ -5,10 +5,10 @@ import CommentCard from './CommentCard';
 export type CommentListProps = React.DetailedHTMLProps<
 	React.HTMLAttributes<HTMLDivElement>,
 	HTMLDivElement
-> & { comments: Array<CommentObject> };
+> & { post: string; comments: Array<CommentObject> };
 
 export default function CommentList(props: CommentListProps) {
-	const { comments, ...rest } = props;
+	const { post, comments, ...rest } = props;
 
 	return (
 		<div className="comment list" {...rest}>
@@ -21,7 +21,7 @@ export default function CommentList(props: CommentListProps) {
 				{comments.map(comment => (
 					<CommentCard
 						data-testid="comment-card"
-						key={`${comment.postId}-${comment.id}`}
+						key={`${post}-${comment.id}`}
 						{...comment}
 					/>
 				))}
