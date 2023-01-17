@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { Provider } from 'react-redux';
 import { render, screen, waitFor } from '@testing-library/react';
+import store from '@/store';
 import PostList from './PostList';
 
 jest.mock('axios');
@@ -27,7 +29,11 @@ describe('PostList', () => {
 			],
 		});
 
-		render(<PostList />);
+		render(
+			<Provider store={store}>
+				<PostList />
+			</Provider>
+		);
 
 		const elems = await waitFor(() =>
 			screen.getAllByTestId('post-card')

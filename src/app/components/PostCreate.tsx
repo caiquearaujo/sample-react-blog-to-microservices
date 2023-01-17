@@ -1,7 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { createPost } from '@/app/api/index';
+import { fetchPosts } from '@/store/posts';
 
-export default function PostCreate() {
+interface PostCreateProps {
+	fetch: () => void;
+}
+
+const mapDispatchToProps = (dispatch: any) => ({
+	fetch: () => dispatch(fetchPosts),
+});
+
+const PostCreate = (props: PostCreateProps) => {
 	const [alert, setAlert] = React.useState({
 		type: 'message',
 		message: '',
@@ -52,6 +62,8 @@ export default function PostCreate() {
 				type: 'message',
 				message: 'Post created successfully.',
 			});
+
+			props.fetch();
 		}
 
 		setTitle('');
@@ -122,4 +134,6 @@ export default function PostCreate() {
 			</form>
 		</div>
 	);
-}
+};
+
+export default connect(undefined, mapDispatchToProps)(PostCreate);

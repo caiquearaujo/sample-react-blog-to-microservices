@@ -1,18 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { PostObject } from '@/types';
-import { getAllPosts } from '@/app/api/index';
+import { RootState } from '@/store';
+import { fetchPosts } from '@/store/posts';
 import PostCard from './PostCard';
 
-export default function PostList() {
-	const [posts, setPosts] = React.useState<PostObject[]>([]);
+interface PostListProps {
+	posts: PostObject[];
+	fetch: () => void;
+}
 
-	const fetchPosts = async () => {
-		const response = await getAllPosts();
-		setPosts(response);
-	};
+const mapStateToProps = (state: RootState) => ({
+	posts: state.posts,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+	fetch: () => dispatch(fetchPosts()),
+});
+
+const PostList = (props: PostListProps) => {
+	const { posts, fetch } = props;
 
 	React.useEffect(() => {
-		fetchPosts();
+		fetch();
 	}, []);
 
 	const renderedPosts = posts.map(post => (
@@ -25,4 +35,6 @@ export default function PostList() {
 			<div className="container-flex-row">{renderedPosts}</div>
 		</div>
 	);
-}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);

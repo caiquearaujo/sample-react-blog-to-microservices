@@ -9,6 +9,8 @@ import {
 	waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
+import store from '@/store';
 import CommentCreate from './CommentCreate';
 
 jest.mock('axios');
@@ -16,14 +18,24 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('CommentCreate', () => {
 	it('should display component', () => {
-		render(<CommentCreate post="1" />);
+		render(
+			<Provider store={store}>
+				<CommentCreate post="1" />
+			</Provider>
+		);
+
 		expect(
 			screen.getByTestId('comment-create-comp')
 		).toBeInTheDocument();
 	});
 
 	it('should display/change the author input value', () => {
-		render(<CommentCreate post="1" />);
+		render(
+			<Provider store={store}>
+				<CommentCreate post="1" />
+			</Provider>
+		);
+
 		const titleInput = screen.getByTestId('author-input');
 		expect(titleInput).toBeInTheDocument();
 		expect(titleInput).toHaveValue('');
@@ -34,7 +46,12 @@ describe('CommentCreate', () => {
 	});
 
 	it('should display/change the content input value', () => {
-		render(<CommentCreate post="1" />);
+		render(
+			<Provider store={store}>
+				<CommentCreate post="1" />
+			</Provider>
+		);
+
 		const contentInput = screen.getByTestId('content-input');
 		expect(contentInput).toBeInTheDocument();
 		expect(contentInput).toHaveValue('');
@@ -45,7 +62,12 @@ describe('CommentCreate', () => {
 	});
 
 	it('should display the alert danger message when empty author', () => {
-		render(<CommentCreate post="1" />);
+		render(
+			<Provider store={store}>
+				<CommentCreate post="1" />
+			</Provider>
+		);
+
 		const submitButton = screen.getByTestId('submit-button');
 		userEvent.click(submitButton);
 
@@ -58,7 +80,12 @@ describe('CommentCreate', () => {
 	});
 
 	it('should display the alert danger message when empty content', () => {
-		render(<CommentCreate post="1" />);
+		render(
+			<Provider store={store}>
+				<CommentCreate post="1" />
+			</Provider>
+		);
+
 		fireEvent.change(screen.getByTestId('author-input'), {
 			target: { value: 'Bruce Wayne' },
 		});
@@ -79,7 +106,12 @@ describe('CommentCreate', () => {
 			data: { id: '1' },
 		});
 
-		render(<CommentCreate post="1" />);
+		render(
+			<Provider store={store}>
+				<CommentCreate post="1" />
+			</Provider>
+		);
+
 		fireEvent.change(screen.getByTestId('author-input'), {
 			target: { value: 'Bruce Wayne' },
 		});

@@ -9,6 +9,8 @@ import {
 	waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
+import store from '@/store';
 import PostCreate from './PostCreate';
 
 jest.mock('axios');
@@ -16,12 +18,22 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('PostCreate', () => {
 	it('should display component', () => {
-		render(<PostCreate />);
+		render(
+			<Provider store={store}>
+				<PostCreate />
+			</Provider>
+		);
+
 		expect(screen.getByTestId('post-create-comp')).toBeInTheDocument();
 	});
 
 	it('should display/change the title input value', () => {
-		render(<PostCreate />);
+		render(
+			<Provider store={store}>
+				<PostCreate />
+			</Provider>
+		);
+
 		const titleInput = screen.getByTestId('title-input');
 		expect(titleInput).toBeInTheDocument();
 		expect(titleInput).toHaveValue('');
@@ -32,7 +44,12 @@ describe('PostCreate', () => {
 	});
 
 	it('should display/change the content input value', () => {
-		render(<PostCreate />);
+		render(
+			<Provider store={store}>
+				<PostCreate />
+			</Provider>
+		);
+
 		const contentInput = screen.getByTestId('content-input');
 		expect(contentInput).toBeInTheDocument();
 		expect(contentInput).toHaveValue('');
@@ -43,7 +60,12 @@ describe('PostCreate', () => {
 	});
 
 	it('should display/change the status select value', () => {
-		render(<PostCreate />);
+		render(
+			<Provider store={store}>
+				<PostCreate />
+			</Provider>
+		);
+
 		const statusSelect = screen.getByTestId('status-input');
 		expect(statusSelect).toBeInTheDocument();
 		expect(statusSelect).toHaveValue('draft');
@@ -54,7 +76,12 @@ describe('PostCreate', () => {
 	});
 
 	it('should display the alert danger message when empty title', () => {
-		render(<PostCreate />);
+		render(
+			<Provider store={store}>
+				<PostCreate />
+			</Provider>
+		);
+
 		const submitButton = screen.getByTestId('submit-button');
 		userEvent.click(submitButton);
 
@@ -67,7 +94,12 @@ describe('PostCreate', () => {
 	});
 
 	it('should display the alert danger message when empty content', () => {
-		render(<PostCreate />);
+		render(
+			<Provider store={store}>
+				<PostCreate />
+			</Provider>
+		);
+
 		fireEvent.change(screen.getByTestId('title-input'), {
 			target: { value: 'My title' },
 		});
@@ -88,7 +120,12 @@ describe('PostCreate', () => {
 			data: { id: '1' },
 		});
 
-		render(<PostCreate />);
+		render(
+			<Provider store={store}>
+				<PostCreate />
+			</Provider>
+		);
+
 		fireEvent.change(screen.getByTestId('title-input'), {
 			target: { value: 'My title' },
 		});

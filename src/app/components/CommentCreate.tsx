@@ -1,12 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { createComment } from '@/app/api/index';
+import { fetchPosts } from '@/store/posts';
 
 export type CommentCreateProps = React.DetailedHTMLProps<
 	React.HTMLAttributes<HTMLDivElement>,
 	HTMLDivElement
-> & { post: string };
+> & { post: string; fetch: () => void };
 
-export default function CommentCreate(props: CommentCreateProps) {
+const mapDispatchToProps = (dispatch: any) => ({
+	fetch: () => dispatch(fetchPosts),
+});
+
+const CommentCreate = (props: CommentCreateProps) => {
 	const { post } = props;
 
 	const [alert, setAlert] = React.useState({
@@ -52,6 +58,8 @@ export default function CommentCreate(props: CommentCreateProps) {
 				type: 'message',
 				message: 'Comment created successfully.',
 			});
+
+			props.fetch();
 		}
 
 		setAuthor('');
@@ -106,4 +114,6 @@ export default function CommentCreate(props: CommentCreateProps) {
 			</form>
 		</div>
 	);
-}
+};
+
+export default connect(undefined, mapDispatchToProps)(CommentCreate);
