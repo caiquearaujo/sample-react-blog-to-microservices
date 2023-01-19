@@ -26,9 +26,13 @@ export default function PostCard(props: PostCardProps) {
 				<p data-testid="post-content" className="content">
 					{content}
 				</p>
-				<CommentList post={id} comments={comments} />
 			</div>
-			{status !== 'draft' && <CommentCreate post={id} />}
+			{status !== 'draft' && (
+				<React.Fragment>
+					<CommentList post={id} comments={comments} />
+					<CommentCreate post={id} />
+				</React.Fragment>
+			)}
 		</div>
 	);
 }

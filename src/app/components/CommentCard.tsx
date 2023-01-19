@@ -19,8 +19,8 @@ export default function CommentCard(props: CommentCardProps) {
 		case 'pending':
 			censuredContent = 'This comment is awaiting moderation';
 			break;
-		case 'refused':
-			censuredContent = 'This comment has been refused';
+		case 'recused':
+			censuredContent = 'This comment has been recused';
 			break;
 		default:
 			censuredContent = 'This comment is awaiting moderation';

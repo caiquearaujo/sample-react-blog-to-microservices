@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { CommentObject, PostObject } from '@/types';
 
-const QUERY_API_URL = 'http://localhost:3003';
-const POSTS_API_URL = 'http://localhost:3000';
-const COMMENT_API_URL = 'http://localhost:3002';
+const QUERY_API_URL = 'http://192.168.0.11:3004';
+const POSTS_API_URL = 'http://192.168.0.11:3000';
+const COMMENT_API_URL = 'http://192.168.0.11:3001';
 
 const getAllPosts = async (): Promise<Array<PostObject>> => {
 	try {

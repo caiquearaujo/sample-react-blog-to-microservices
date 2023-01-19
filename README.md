@@ -44,3 +44,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Docker
+
+This application depends on another containers. You must use the `docker-compose` or similar to deploy it. If you want to keep it as an individual container you must share at least the network. The following commands will work in the development env:
+
+1. Build docker image locale `docker build -t frontend-ms -f ./Dockerfile.dev .`;
+2. Run image in background, mapping the application port and specifying a shared network: `docker run -d -p 3000:3000 --volume $(pwd):/usr/app frontend-ms`;
+3. After running, you may see it's running with `docker ps` command.

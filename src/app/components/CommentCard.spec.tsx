@@ -44,19 +44,19 @@ describe('CommentCard', () => {
 		);
 	});
 
-	it('should render refused comment status', () => {
+	it('should render recused comment status', () => {
 		render(
 			<CommentCard
 				id="abc"
 				author="foo"
 				content="bar"
-				status="refused"
+				status="recused"
 			/>
 		);
 
 		const content = screen.getByTestId('comment-content');
 
 		expect(content).toBeInTheDocument();
-		expect(content).toHaveTextContent('This comment has been refused');
+		expect(content).toHaveTextContent('This comment has been recused');
 	});
 });
